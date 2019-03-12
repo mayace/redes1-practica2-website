@@ -1,0 +1,47 @@
+﻿@page
+@model redes1_practica2.Pages.VehiculosModel
+@{
+    ViewData["Title"] = "Vehiculos";
+    Layout = "~/Pages/_Layout.cshtml";
+}
+
+<p class="title">@Model.Vehiculos.Count() Vehiculos</p>
+
+<form method="post">
+    <div class="field">
+        <label class="label">Nombre</label>
+        <div class="control">
+            <input asp-for="vehiculo.Nombre" class="input">
+        </div>
+    </div>
+    <div class="field">
+        <div class="control">
+            <button type="submit" class="button is-success">Guardar</button>
+        </div>
+    </div>
+    <table class="table is-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Vehiculos)
+            {
+                <tr>
+                    <td>@item.IDVehiculo</td>
+                    <td>@item.Nombre</td>
+                    <td>
+                        <button asp-page-handler="delete" asp-route-id="@item.IDVehiculo" type="submit" class="button is-danger">
+                            <span class="icon">
+                                <i class="fas fa-trash-alt"></i>
+                            </span>
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</form>
